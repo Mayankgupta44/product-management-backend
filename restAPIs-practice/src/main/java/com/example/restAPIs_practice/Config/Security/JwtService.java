@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -12,8 +13,9 @@ import java.util.UUID;
 
 @Service
 public class JwtService {
-
-    private final String secretKey = "my-super-secret-key-for-jwt-authentication-123456";
+    
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     private final long expirationTime = 1000 * 60 * 60; // 1 hour
 
